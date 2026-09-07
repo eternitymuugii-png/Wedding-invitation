@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="assets/share-cover.jpg" />
     <title>Д. Батзориг &amp; Л. Сувд | Хуримын урилга</title>
-    <link rel="stylesheet" href="styles.css?v=20260907-2" />
+    <link rel="stylesheet" href="styles.css?v=20260907-3" />
   </head>
   <body>
     <div class="opening" id="opening" aria-label="Урилгыг нээх хэсэг">
@@ -104,13 +104,13 @@
             <button class="carousel-arrow prev" type="button" aria-label="Өмнөх зураг">‹</button>
             <div class="carousel-stage">
               <button class="photo-card" type="button" data-index="0" aria-label="Хуримын зураг 1-ийг нээх">
-                <img src="assets/photo-1.jpg" alt="Хуримын зураг 1" />
+                <img src="assets/photo-1.jpg?v=20260907-3" alt="Хуримын зураг 1" />
               </button>
               <button class="photo-card" type="button" data-index="1" aria-label="Хуримын зураг 2-ыг нээх">
-                <img src="assets/photo-2.jpg" alt="Хуримын зураг 2" />
+                <img src="assets/photo-2.jpg?v=20260907-3" alt="Хуримын зураг 2" />
               </button>
               <button class="photo-card" type="button" data-index="2" aria-label="Хуримын зураг 3-ыг нээх">
-                <img src="assets/photo-3.jpg" alt="Хуримын зураг 3" />
+                <img src="assets/photo-3.jpg?v=20260907-3" alt="Хуримын зураг 3" />
               </button>
             </div>
             <button class="carousel-arrow next" type="button" aria-label="Дараах зураг">›</button>
@@ -119,6 +119,28 @@
             <button type="button" data-slide="0" aria-label="Зураг 1 рүү очих"></button>
             <button type="button" data-slide="1" aria-label="Зураг 2 руу очих"></button>
             <button type="button" data-slide="2" aria-label="Зураг 3 руу очих"></button>
+          </div>
+        </section>
+
+        <section class="countdown-section section" aria-labelledby="countdown-title">
+          <h2 id="countdown-title">Хурим болоход</h2>
+          <div class="countdown-grid" id="countdown" role="timer">
+            <div class="countdown-item">
+              <strong id="countdownDays">0</strong>
+              <span>өдөр</span>
+            </div>
+            <div class="countdown-item">
+              <strong id="countdownHours">0</strong>
+              <span>цаг</span>
+            </div>
+            <div class="countdown-item">
+              <strong id="countdownMinutes">0</strong>
+              <span>минут</span>
+            </div>
+            <div class="countdown-item">
+              <strong id="countdownSeconds">0</strong>
+              <span>секунд</span>
+            </div>
           </div>
         </section>
 
@@ -193,11 +215,11 @@
     <dialog class="lightbox" id="lightbox">
       <button class="lightbox-close" type="button" aria-label="Зургийг хаах">×</button>
       <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Өмнөх зураг">‹</button>
-      <img id="lightboxImage" src="assets/photo-1.jpg" alt="Хуримын зураг" />
+      <img id="lightboxImage" src="assets/photo-1.jpg?v=20260907-3" alt="Хуримын зураг" />
       <button class="lightbox-arrow lightbox-next" type="button" aria-label="Дараах зураг">›</button>
     </dialog>
 
     <script src="supabase-config.js?v=20260907-3"></script>
-    <script src="script.js?v=20260907-2"></script>
+    <script src="script.js?v=20260907-3"></script>
   </body>
 </html>

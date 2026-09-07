@@ -436,6 +436,55 @@ main {
   font-size: 17px;
 }
 
+.countdown-section {
+  min-height: 290px;
+  padding: 32px 24px 72px;
+  text-align: center;
+}
+
+.countdown-section h2 {
+  margin: 0 0 32px;
+  color: var(--gold);
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.countdown-grid {
+  width: min(100%, 620px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.countdown-item {
+  padding: 20px 8px 17px;
+  border: 1px solid rgb(189 147 96 / 24%);
+  border-radius: 14px;
+  background: rgb(248 243 236 / 64%);
+  box-shadow: 0 12px 24px rgb(75 68 61 / 8%);
+}
+
+.countdown-item strong {
+  display: block;
+  color: var(--gold);
+  font-size: clamp(32px, 5vw, 46px);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.countdown-item span {
+  display: block;
+  margin-top: 9px;
+  color: var(--olive);
+  font-family: var(--ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
 .calendar-section {
   min-height: 620px;
   padding: 12px 24px 65px;
@@ -1037,7 +1086,7 @@ main {
   .hero { min-height: 540px; }
   .flower-hero { width: 63%; top: -38px; right: -34px; }
   .hero-frame { top: 22px; width: 92%; }
-  .hero-copy { top: 44%; }
+  .hero-copy { top: 50%; }
   .eyebrow { font-size: 12px; margin-bottom: 10px; }
   .hero h1 { font-size: 37px; }
   .hero h1 i { margin: 5px 0; font-size: 22px; }
@@ -1067,6 +1116,13 @@ main {
   .carousel-arrow { width: 30px; height: 30px; font-size: 24px; }
   .carousel-arrow.prev { left: 10%; }
   .carousel-arrow.next { right: 10%; }
+
+  .countdown-section { min-height: 220px; padding: 20px 12px 48px; }
+  .countdown-section h2 { margin-bottom: 24px; font-size: 20px; }
+  .countdown-grid { gap: 6px; }
+  .countdown-item { padding: 15px 3px 13px; border-radius: 10px; }
+  .countdown-item strong { font-size: 29px; }
+  .countdown-item span { margin-top: 7px; font-size: 9px; letter-spacing: 0.03em; }
 
   .calendar-section { min-height: 510px; padding: 0 12px 48px; }
   .calendar-wrap { width: 100%; }

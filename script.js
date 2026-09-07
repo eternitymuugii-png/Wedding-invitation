@@ -1,7 +1,7 @@
 const photos = [
-  "assets/photo-1.jpg",
-  "assets/photo-2.jpg",
-  "assets/photo-3.jpg",
+  "assets/photo-1.jpg?v=20260907-3",
+  "assets/photo-2.jpg?v=20260907-3",
+  "assets/photo-3.jpg?v=20260907-3",
 ];
 
 const opening = document.querySelector("#opening");
@@ -87,7 +87,7 @@ function startAutoScroll() {
   });
   window.addEventListener("keydown", stopAutoScroll, { signal });
 
-  const scrollSpeed = 36;
+  const scrollSpeed = 48;
   autoScrollPosition = window.scrollY;
   const scrollStep = (time) => {
     if (autoScrollLastTime === undefined) autoScrollLastTime = time;
@@ -157,6 +157,38 @@ for (let day = 1; day <= 30; day += 1) {
     cell.setAttribute("aria-label", "Хуримын өдөр, есдүгээр сарын 23");
   }
   calendarGrid.append(cell);
+}
+
+const countdown = document.querySelector("#countdown");
+const countdownDays = document.querySelector("#countdownDays");
+const countdownHours = document.querySelector("#countdownHours");
+const countdownMinutes = document.querySelector("#countdownMinutes");
+const countdownSeconds = document.querySelector("#countdownSeconds");
+const weddingTime = new Date("2026-09-23T17:00:00+08:00").getTime();
+let countdownTimer;
+
+function updateCountdown() {
+  const remainingSeconds = Math.max(0, Math.floor((weddingTime - Date.now()) / 1000));
+  const days = Math.floor(remainingSeconds / 86400);
+  const hours = Math.floor((remainingSeconds % 86400) / 3600);
+  const minutes = Math.floor((remainingSeconds % 3600) / 60);
+  const seconds = remainingSeconds % 60;
+
+  countdownDays.textContent = String(days);
+  countdownHours.textContent = String(hours).padStart(2, "0");
+  countdownMinutes.textContent = String(minutes).padStart(2, "0");
+  countdownSeconds.textContent = String(seconds).padStart(2, "0");
+  countdown.setAttribute(
+    "aria-label",
+    `Хурим болоход ${days} өдөр ${hours} цаг ${minutes} минут ${seconds} секунд`,
+  );
+
+  if (remainingSeconds === 0) window.clearInterval(countdownTimer);
+}
+
+updateCountdown();
+if (weddingTime > Date.now()) {
+  countdownTimer = window.setInterval(updateCountdown, 1000);
 }
 
 const photoCards = [...document.querySelectorAll(".photo-card")];
