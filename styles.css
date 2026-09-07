@@ -1057,10 +1057,11 @@ main {
   .date-row b { height: 22px; }
   .date-row em { font-size: 31px; }
 
-  .gallery-section { min-height: 540px; padding: 12px 10px 55px; }
+  .gallery-section { min-height: 430px; padding: 12px 10px 55px; }
   .gallery-section h2 { margin-bottom: 28px; }
-  .carousel { height: 380px; }
-  .photo-card { width: 68vw; max-width: 330px; height: 350px; border-radius: 13px; }
+  .carousel { height: 270px; }
+  .photo-card { width: 88vw; max-width: 350px; height: auto; aspect-ratio: 3 / 2; border-radius: 13px; }
+  .photo-card img { object-fit: contain; }
   .photo-card[data-position="left"] { transform: translate(-97%, -50%) rotateY(42deg) scale(.76); }
   .photo-card[data-position="right"] { transform: translate(-3%, -50%) rotateY(-42deg) scale(.76); }
   .carousel-arrow { width: 30px; height: 30px; font-size: 24px; }

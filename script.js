@@ -14,6 +14,10 @@ const musicTip = document.querySelector("#musicTip");
 let activeSlide = 0;
 let lightboxSlide = 0;
 let musicPlaying = false;
+let autoScrollFrame;
+let autoScrollLastTime;
+let autoScrollController;
+let autoScrollPosition;
 
 function setMusicState(playing) {
   musicPlaying = playing;
@@ -62,6 +66,47 @@ function releaseFlowerConfetti() {
   }
 }
 
+function stopAutoScroll() {
+  if (autoScrollFrame) window.cancelAnimationFrame(autoScrollFrame);
+  autoScrollFrame = undefined;
+  autoScrollLastTime = undefined;
+  autoScrollPosition = undefined;
+  autoScrollController?.abort();
+  autoScrollController = undefined;
+}
+
+function startAutoScroll() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  stopAutoScroll();
+  autoScrollController = new AbortController();
+  const { signal } = autoScrollController;
+  const interactionEvents = ["wheel", "touchstart", "pointerdown"];
+  interactionEvents.forEach((eventName) => {
+    window.addEventListener(eventName, stopAutoScroll, { passive: true, signal });
+  });
+  window.addEventListener("keydown", stopAutoScroll, { signal });
+
+  const scrollSpeed = 36;
+  autoScrollPosition = window.scrollY;
+  const scrollStep = (time) => {
+    if (autoScrollLastTime === undefined) autoScrollLastTime = time;
+    const elapsed = Math.min(time - autoScrollLastTime, 50);
+    autoScrollLastTime = time;
+    autoScrollPosition += (scrollSpeed * elapsed) / 1000;
+    window.scrollTo(0, autoScrollPosition);
+
+    const pageBottom = document.documentElement.scrollHeight - window.innerHeight;
+    if (window.scrollY < pageBottom - 1) {
+      autoScrollFrame = window.requestAnimationFrame(scrollStep);
+    } else {
+      stopAutoScroll();
+    }
+  };
+
+  autoScrollFrame = window.requestAnimationFrame(scrollStep);
+}
+
 function openInvitation() {
   if (opening.classList.contains("is-opening")) return;
 
@@ -75,6 +120,7 @@ function openInvitation() {
     opening.classList.add("hidden");
     document.body.classList.add("opened");
     window.setTimeout(() => flowerConfetti.replaceChildren(), 500);
+    window.setTimeout(startAutoScroll, 900);
   }, delay);
 }
 
