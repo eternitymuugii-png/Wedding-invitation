@@ -2,6 +2,8 @@ const photos = [
   "assets/photo-1.jpg?v=20260907-3",
   "assets/photo-2.jpg?v=20260907-3",
   "assets/photo-3.jpg?v=20260907-3",
+  "assets/photo-4.jpg?v=20260908-1",
+  "assets/photo-5.jpg?v=20260908-1",
 ];
 
 const opening = document.querySelector("#opening");
@@ -199,9 +201,17 @@ let autoplayTimer;
 function updateCarousel() {
   photoCards.forEach((card, index) => {
     const relative = (index - activeSlide + photoCards.length) % photoCards.length;
-    const position = relative === 0 ? "active" : relative === 1 ? "right" : "left";
+    const position = relative === 0
+      ? "active"
+      : relative === 1
+        ? "right"
+        : relative === photoCards.length - 1
+          ? "left"
+          : "hidden";
     card.dataset.position = position;
     card.setAttribute("aria-current", position === "active" ? "true" : "false");
+    card.setAttribute("aria-hidden", position === "hidden" ? "true" : "false");
+    card.tabIndex = position === "hidden" ? -1 : 0;
   });
   dots.forEach((dot, index) => dot.classList.toggle("active", index === activeSlide));
 }
